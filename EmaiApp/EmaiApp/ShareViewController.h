@@ -10,8 +10,10 @@
 #import "NetClient.h"
 #import "UIImageView+AFNetworking.h"
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "DetailViewController.h"
 
 @interface ShareViewController : UIViewController <UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout>
 @property (nonatomic, strong) UICollectionView *shareCollectionView;
 @property (nonatomic) CGFloat cellWidth;
+
 @end

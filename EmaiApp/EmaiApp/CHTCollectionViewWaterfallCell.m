@@ -14,34 +14,19 @@
 @implementation CHTCollectionViewWaterfallCell
 
 #pragma mark - Accessors
-- (UILabel *)displayLabel {
-	if (!_displayLabel) {
-		_displayLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
-		_displayLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-		_displayLabel.backgroundColor = [UIColor lightGrayColor];
-		_displayLabel.textColor = [UIColor whiteColor];
-		_displayLabel.textAlignment = NSTextAlignmentCenter;
-	}
-	return _displayLabel;
-}
 
-- (void)setDisplayString:(NSString *)displayString {
-	if (![_displayString isEqualToString:displayString]) {
-		_displayString = [displayString copy];
-		self.displayLabel.text = _displayString;
-	}
-}
-
-- (UICollectionViewCell *)displayCell
+- (UIView *) addCellView
 {
-    if (!_cell) {
-        _cell = [[UICollectionViewCell alloc] initWithFrame:self.contentView.bounds];
-        _cell.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _cell.backgroundColor = [UIColor lightGrayColor];
+    if (!_cellView) {
+        _cellView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+        _cellView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _cellView.backgroundColor = [UIColor whiteColor];
     }
-//    [_cell.contentView addSubview:self.addThumbnail];
-//    [_cell.contentView addSubview:self.addPriceLabel];
-    return _cell;
+    
+    [_cellView addSubview:self.addThumbnail];
+    [_cellView addSubview:self.addPriceLabel];
+    
+    return _cellView;
 }
 
 - (UIImageView *)addThumbnail
@@ -50,7 +35,6 @@
         _thumbnail = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
         _thumbnail.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _thumbnail.backgroundColor = [UIColor whiteColor];
-        _thumbnail.image = [UIImage imageNamed:@"NiuPai.jpg"];
     }
     
     return _thumbnail;
@@ -59,8 +43,8 @@
 - (UILabel *)addPriceLabel
 {
     if (!_priceLabel) {
-        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
-        _priceLabel.text = @"100";
+        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 47, 23)];
+        _priceLabel.text = @"0";
         _priceLabel.backgroundColor = [UIColor lightGrayColor];
         _priceLabel.textColor = [UIColor whiteColor];
         _priceLabel.textAlignment = NSTextAlignmentCenter;
@@ -71,16 +55,16 @@
 
 #pragma mark - Life Cycle
 - (void)dealloc {
-	[_cell removeFromSuperview];
-	_cell = nil;
+	[_cellView removeFromSuperview];
+	_cellView = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
 		// Initialization code
-		[self.contentView addSubview:self.displayLabel];
-        [self.contentView addSubview:self.displayCell];
+        [self.contentView addSubview:self.addCellView];
+        
 	}
 	return self;
 }

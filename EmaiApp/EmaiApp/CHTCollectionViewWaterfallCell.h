@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CHTCollectionViewWaterfallCell : UICollectionViewCell
-@property (nonatomic, copy) NSString *displayString;
-@property (nonatomic, strong) UILabel *displayLabel;
-@property (nonatomic, strong) UICollectionViewCell *cell;
 @property (nonatomic, strong) UIImageView *thumbnail;
 @property (nonatomic, strong) UILabel *priceLabel;
+@property (nonatomic, strong) UIView *cellView;
 
 @end

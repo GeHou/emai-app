@@ -14,7 +14,7 @@
 
 @implementation DetailViewController
 
-@synthesize good, titleLabel, priceLabel, thumbnailImageView;
+@synthesize good, titleLabel, priceLabel, thumbnailImageView, seller;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +35,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     titleLabel.text = [good valueForKeyPath:@"title"];
-    priceLabel.text = [good valueForKeyPath:@"price"];
+    priceLabel.text = [@"¥" stringByAppendingString:[good valueForKeyPath:@"price"]];
+    seller.text = [good valueForKeyPath:@"seller_name"];
     NSURL *imgUrl = [NSURL URLWithString:[good valueForKeyPath:@"image"]];
     [thumbnailImageView setImageWithURL:imgUrl];
 }

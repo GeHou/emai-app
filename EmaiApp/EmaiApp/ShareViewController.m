@@ -18,6 +18,22 @@
 @end
 
 @implementation ShareViewController
+{
+    NSMutableArray *cellData;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UINavigationItem *n = [self navigationItem];
+        [n setTitle:@"风尚"];
+        // 去除导航返回按钮的文字
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+        [n setBackBarButtonItem:backButton];
+    }
+    return self;
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
@@ -66,6 +82,25 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self.view addSubview:self.collectionView];
+    [[NetClient sharedClient] GET:@"android/getsharegoods" parameters:nil success:^(NSURLSessionDataTask * __unused task, id data) {
+        
+        NSArray *allGoods = [data valueForKeyPath:@"goodsInfo"];
+        
+        cellData = [[NSMutableArray alloc] init];
+        
+        for (NSArray *good in allGoods) {
+            [cellData addObject:good];
+        }
+        
+        [_shareCollectionView reloadData];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        
+        UIAlertView *errorNoticeAlert = [[UIAlertView alloc] initWithTitle:@"发成错误" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [errorNoticeAlert show];
+        
+    }];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -96,7 +131,7 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return CELL_COUNT;
+	return [cellData count];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -110,6 +145,9 @@
                                                                                 forIndexPath:indexPath];
     
 //	cell.displayString = [NSString stringWithFormat:@"%d", indexPath.row];
+    
+    [cell.thumbnail setImageWithURL:[NSURL URLWithString:[[cellData objectAtIndex:indexPath.row] valueForKeyPath:@"image"]]];
+    cell.priceLabel.text = [NSString stringWithFormat:@"%@", [[cellData objectAtIndex:indexPath.row] valueForKeyPath:@"price"]];
 	return cell;
 }
 
@@ -122,7 +160,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"did select");
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    
+    [detailViewController setGood:[cellData objectAtIndex:indexPath.row]];
+    
+    [[self navigationController] pushViewController:detailViewController animated:YES];
 }
 
 @end

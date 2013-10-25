@@ -82,9 +82,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YouhuiTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+
     cell.titleLabel.text = [[tableData objectAtIndex:indexPath.row] valueForKeyPath:@"title"];
-    cell.priceLabel.text = [[tableData objectAtIndex:indexPath.row] valueForKeyPath:@"price"];
+    cell.priceLabel.text = [@"¥" stringByAppendingString:[[tableData objectAtIndex:indexPath.row] valueForKeyPath:@"price"]];
     cell.seller.text = [[tableData objectAtIndex:indexPath.row] valueForKeyPath:@"seller_name"];
     NSURL *imgUrl = [NSURL URLWithString:[[tableData objectAtIndex:indexPath.row] valueForKeyPath:@"image"]];
     [cell.thumbnailImageView setImageWithURL:imgUrl];
