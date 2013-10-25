@@ -53,6 +53,7 @@
 		FCC39BFF181A12AD00021C77 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC39BF5181A12AC00021C77 /* UIImageView+AFNetworking.m */; };
 		FCC39C00181A12AD00021C77 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC39BF8181A12AC00021C77 /* UIProgressView+AFNetworking.m */; };
 		FCC39C01181A12AD00021C77 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC39BFA181A12AC00021C77 /* UIWebView+AFNetworking.m */; };
+		FCC39C03181A6C6D00021C77 /* grid3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCC39C02181A6C6D00021C77 /* grid3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		FCC39BF8181A12AC00021C77 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		FCC39BF9181A12AC00021C77 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		FCC39BFA181A12AC00021C77 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		FCC39C02181A6C6D00021C77 /* grid3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 				FCC39BC8181A127A00021C77 /* buy.png */,
 				FCC39BC9181A127A00021C77 /* grid1.png */,
 				FCC39BCA181A127A00021C77 /* grid2.png */,
+				FCC39C02181A6C6D00021C77 /* grid3.png */,
 			);
 			name = Image;
 			path = EmaiApp;
@@ -450,6 +453,7 @@
 				FCC39BBB181A11BA00021C77 /* YouhuiViewController.xib in Resources */,
 				FCC39BCB181A127A00021C77 /* buy.png in Resources */,
 				FCC39B7B181A10B200021C77 /* Images.xcassets in Resources */,
+				FCC39C03181A6C6D00021C77 /* grid3.png in Resources */,
 				FCC39BBD181A11BA00021C77 /* YouhuiTableCell.xib in Resources */,
 				FCC39BCC181A127A00021C77 /* grid1.png in Resources */,
 			);

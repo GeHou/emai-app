@@ -36,6 +36,8 @@
     _grids = [[NSMutableArray alloc] init];
     [_grids addObject:@"grid1.png"];
     [_grids addObject:@"grid2.png"];
+    [_grids addObject:@"grid3.png"];
+    
 
     UINib *cellNib = [UINib nibWithNibName:@"HomeCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"gridCell"];
@@ -62,7 +64,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -83,6 +85,10 @@
             break;
         
         case 1:
+            [[self navigationController] pushViewController:shareViewController animated:YES];
+            break;
+            
+        case 2:
             [[self navigationController] pushViewController:shareViewController animated:YES];
             break;
             
